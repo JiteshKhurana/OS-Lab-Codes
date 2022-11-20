@@ -4,10 +4,11 @@ using namespace std;
 struct Process{
     int pid;
     int bt;
+    int priority;
 };
 
-bool compare(Process a,Process b){
-    return (a.bt<b.bt);
+bool compare(Process a, Process b) {
+   return (a.priority > b.priority);
 }
 
 void findWaitingTime(Process proc[],int n,int wt[]){
@@ -17,13 +18,13 @@ void findWaitingTime(Process proc[],int n,int wt[]){
         wt[i] = proc[i-1].bt+wt[i-1];
     }
 }
+
 void findTurnAroundTime(Process proc[],int n,int wt[],int tat[]){
     for (int i = 0; i < n; i++)
     {
         tat[i] = wt[i]+proc[i].bt;
     }
 }
-
 void findAvgTime(Process proc[],int n){
     int wt[n],tat[n],total_wt=0,total_tat=0;
     findWaitingTime(proc,n,wt);
@@ -41,10 +42,12 @@ void findAvgTime(Process proc[],int n){
     cout<<"Average Waiting time = "<<(float)total_wt/(float)n<<endl;
     cout<<"Average turn around time = "<<(float)total_tat/(float)n<<endl;
 }
+
 int main(){
-    Process proc[] = {{1, 6}, {2, 8}, {3, 7}, {4, 3}}; 
+    Process proc[] = {{1, 10, 2}, {2, 5, 0}, {3, 8, 1}};
     int n = sizeof(proc)/sizeof(proc[0]);
     sort(proc,proc+n,compare);
     findAvgTime(proc,n);
+
     return 0;
 }
