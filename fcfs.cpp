@@ -26,14 +26,13 @@ void findTurnAroundTime(int processes[],int n,int bt[],int wt[],int tat[]){
 }
 
 void findAvgTime(int processes[],int n,int bt[],int at[]){
-    int wt[n],tat[n];
+    int wt[n],tat[n],total_wt = 0,total_tat = 0;;
     findWaitingTime(processes,n,bt,wt,at);
 
     findTurnAroundTime(processes,n,bt,wt,tat);
 
     cout<<"Processes "<<" Arrival Time "<<" Burst Time "<<" Completion Time "<<" Turn-Around Time "<<" Waiting Time \n";
-    int total_wt = 0;
-    int total_tat = 0;
+
     for (int i = 0; i < n; i++)
     {
         total_wt = total_wt+wt[i];

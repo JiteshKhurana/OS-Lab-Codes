@@ -3,7 +3,6 @@ using namespace std;
 
 int main()
 {
-
     int n = 5; // No of processes
     int m = 3; // No of resources
     int alloc[5][3] = {{0, 1, 0}, {2, 0, 0}, {3, 0, 2}, {2, 1, 1}, {0, 0, 2}};
